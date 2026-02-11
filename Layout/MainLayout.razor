@@ -1,16 +1,88 @@
 ﻿@inherits LayoutComponentBase
-<div class="page">
-    <div class="sidebar">
-        <NavMenu/>
-    </div>
 
-    <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div>
+@* Required *@
+<MudThemeProvider @bind-IsDarkMode="@_isDarkMode" Theme="_theme"/>
+<MudPopoverProvider />
 
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
-</div>
+@* Needed for dialogs *@
+<MudDialogProvider />
+
+@* Needed for snackbars *@
+<MudSnackbarProvider />
+
+<MudLayout>
+    <MudAppBar Fixed="false" Elevation="0">
+        <MudSpacer />
+        <MudSwitch @bind-Value="_isDarkMode"
+                   ThumbIcon="@(_isDarkMode == true ? Icons.Material.Filled.DarkMode : Icons.Material.Filled.LightMode)"
+                   ThumbIconColor="@(_isDarkMode == true ? Color.Success : Color.Error)"
+                   Class="ma-4" T="bool"/>
+    </MudAppBar>
+    <MudMainContent>
+        @Body
+    </MudMainContent>
+</MudLayout>
+
+@code {
+    private bool _isDarkMode;
+
+    private MudTheme _theme = new MudTheme
+    {
+        PaletteLight = new PaletteLight
+        {
+            // Primárias
+            Primary = "#7b9cff",
+            Secondary = "#80d4ff",
+            Tertiary = "#b399ff",
+
+            // Estados
+            Success = "#85e0a3",
+            Warning = "#ffd966",
+            Error = "#ff8a8a",
+
+            // Backgrounds
+            Background = "#f8fafc",
+            Surface = "#ffffff",
+
+            // Texto
+            TextPrimary = "#2d3748",
+            TextSecondary = "#a0aec0",
+
+            // AppBar
+            AppbarBackground = "#ffffff",
+            AppbarText = "#2d3748",
+
+            // Divisores
+            Divider = "#e2e8f0",
+        },
+
+        PaletteDark = new PaletteDark
+        {
+            Primary = "#88a6ff",
+            Secondary = "#8dd8ff",
+            Tertiary = "#bba3ff",
+
+            Success = "#91e3ac",
+            Warning = "#ffdd75",
+            Error = "#ff9696",
+
+            Background = "#1e2430",
+            Surface = "#2d3748",
+
+            TextPrimary = "#f8fafc",
+            TextSecondary = "#a0aec0",
+
+            AppbarBackground = "#2d3748",
+            AppbarText = "#ffffff",
+
+            Divider = "#424b5d",
+        },
+
+        LayoutProperties = new LayoutProperties
+        {
+            DrawerWidthLeft = "260px",
+            DrawerWidthRight = "300px"
+        },
+        
+    };
+}
