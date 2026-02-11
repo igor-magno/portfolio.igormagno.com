@@ -1,7 +1,185 @@
 ﻿@page "/"
+@using portfolio.igormagno.com.Data
+@using portfolio.igormagno.com.Data.Enums
 
-<PageTitle>Home</PageTitle>
+<PageTitle>Portfolio - Igor Magno</PageTitle>
 
-<h1>Hello, world!</h1>
+<MudContainer MaxWidth="MaxWidth.False" Class="py-16">
+    <MudGrid Spacing="6">
+        @* COLUNA ESQUERDA *@
+        <MudItem xs="12" md="4">
+            <MudStack Class="pa-6">
+                <MudText Typo="Typo.h2"
+                         Style="font-family: Exile, system-ui; font-weight: 400"
+                         Color="Color.Primary">IM
+                </MudText>
+                <MudText Typo="Typo.h3" Class="mb-2">
+                    @title
+                </MudText>
+                <MudText Typo="Typo.subtitle1" Color="Color.Primary">
+                    Engenheiro de Software<br/>
+                    Full Stack
+                </MudText>
+                <MudText Typo="Typo.body1" Color="Color.Secondary" Class="mt-4">
+                    Desenvolvo soluções web, mobile e desktop com foco em performance,
+                    escalabilidade e arquitetura bem definida.
+                </MudText>
+                <MudStack Row="true" Spacing="2" Class="mt-6">
+                    <MudIconButton Icon="@Icons.Custom.Brands.GitHub"
+                                   Href="@gitHubLink"
+                                   Target="_blank"
+                                   Color="Color.Inherit"/>
+                    <MudIconButton Icon="@Icons.Custom.Brands.LinkedIn"
+                                   Href="@linkedinLink"
+                                   Target="_blank"
+                                   Color="Color.Inherit"/>
+                    <MudIconButton Icon="@Icons.Material.Filled.Email"
+                                   Href="@emailLink"
+                                   Target="_blank"
+                                   Color="Color.Inherit"/>
+                </MudStack>
+            </MudStack>
+        </MudItem>
+        @* COLUNA DIREITA *@
+        <MudItem xs="12" md="8">
+            <MudStack Spacing="6">
+                @* SOBRE *@
+                <MudStack Class="pa-6" Spacing="6">
+                    <MudText Typo="Typo.h5" GutterBottom>Sobre</MudText>
+                    <MudText Typo="Typo.body1">
+                        Engenheiro de Software com experiência no desenvolvimento de soluções web, mobile e desktop,
+                        atuando de ponta a ponta — da concepção técnica à entrega e sustentação em produção — com foco
+                        em desempenho, escalabilidade e segurança.
+                    </MudText>
+                    <MudStack AlignItems="AlignItems.Start">
+                        <MudButton Variant="Variant.Filled"
+                                   Color="Color.Primary"
+                                   Href="@cvFilePath"
+                                   StartIcon="@Icons.Material.Filled.Download"
+                                   Size="Size.Small">
+                            Baixar CV
+                        </MudButton>
+                    </MudStack>
+                </MudStack>
+                @* EXPERIÊNCIA *@
+                <MudStack Class="pa-6">
+                    <MudText Typo="Typo.h5" GutterBottom>Experiência</MudText>
+                    <MudStack Spacing="4">
+                        @foreach (var experience in experiences)
+                        {
+                            <div>
+                                <MudText Typo="Typo.caption" Color="Color.Secondary">
+                                    @experience.tag
+                                </MudText>
+                                <MudText Typo="Typo.h6">
+                                    @experience.title
+                                </MudText>
+                                <MudText Typo="Typo.body2">
+                                    @experience.description
+                                </MudText>
+                            </div>
+                        }
+                    </MudStack>
+                </MudStack>
+                @* HABILIDADES *@
+                <MudStack Class="pa-6">
+                    <MudText Typo="Typo.h5" GutterBottom>Habilidades</MudText>
+                    <MudGrid Spacing="4">
+                        <MudItem xs="12" sm="6">
+                            <MudText Typo="Typo.subtitle1">Linguagens</MudText>
+                            @foreach (var skill in LanguageSkills)
+                            {
+                                <MudChip T="string" Variant="Variant.Text"
+                                         Color="Color.Primary">@skill.Name</MudChip>
+                            }
+                        </MudItem>
+                        <MudItem xs="12" sm="6">
+                            <MudText Typo="Typo.subtitle1">Bibliotecas</MudText>
+                            @foreach (var skill in LibSkills)
+                            {
+                                <MudChip T="string" Variant="Variant.Text"
+                                         Color="Color.Primary">@skill.Name</MudChip>
+                            }
+                        </MudItem>
+                        <MudItem xs="12" sm="6">
+                            <MudText Typo="Typo.subtitle1">Frameworks</MudText>
+                            @foreach (var skill in FrameworkSkills)
+                            {
+                                <MudChip T="string" Variant="Variant.Text"
+                                         Color="Color.Primary">@skill.Name</MudChip>
+                            }
+                        </MudItem>
+                        <MudItem xs="12" sm="6">
+                            <MudText Typo="Typo.subtitle1">Ferramentas</MudText>
+                            @foreach (var skill in ToolSkills)
+                            {
+                                <MudChip T="string" Variant="Variant.Text"
+                                         Color="Color.Primary">@skill.Name</MudChip>
+                            }
+                        </MudItem>
+                        <MudItem>
+                            <MudText Typo="Typo.subtitle1">Estudos</MudText>
+                            @foreach (var skill in StudySkills)
+                            {
+                                <MudChip T="string" Variant="Variant.Text"
+                                         Color="Color.Primary">@skill.Name</MudChip>
+                            }
+                        </MudItem>
+                    </MudGrid>
+                </MudStack>
+                @* PROJETOS *@
+                <MudStack Class="pa-6">
+                    <MudText Typo="Typo.h5" GutterBottom>Projetos</MudText>
+                    <MudGrid Spacing="4">
+                        @foreach (var project in Projects.List)
+                        {
+                            <MudItem xs="12" sm="6">
+                                <MudCard Elevation="0">
+                                    <MudCardContent>
+                                        <MudText Typo="Typo.h6">
+                                            @project.Name
+                                        </MudText>
+                                        <MudText Typo="Typo.body2">
+                                            @project.Description
+                                        </MudText>
+                                    </MudCardContent>
+                                    <MudCardActions Class="pa-6">
+                                        <MudLink Href="@project.Link"
+                                                 Target="_blank"
+                                                 Color="Color.Primary">
+                                            Ver case técnico →
+                                        </MudLink>
+                                    </MudCardActions>
+                                </MudCard>
+                            </MudItem>
+                        }
+                    </MudGrid>
+                </MudStack>
+            </MudStack>
+        </MudItem>
+    </MudGrid>
+    @* FOOTER *@
+    <MudText Typo="Typo.caption"
+             Align="Align.Center"
+             Color="Color.Secondary"
+             Class="pa-6">
+        © 2018 - @DateTime.Now.Year @title
+    </MudText>
+</MudContainer>
 
-Welcome to your new app.
+@code {
+    private string title = "Igor Magno";
+
+    private string gitHubLink = "https://github.com/igor-magno";
+    private string linkedinLink = "https://www.linkedin.com/in/igor-magno/";
+    private string emailLink = "https://mail.google.com/mail/?view=cm&fs=1&to=igormagno.dev@gmail.com";
+
+    private string cvFilePath = "/igor-magno-cv-padrao.pdf";
+
+    private Experience[] experiences = Experiences.List;
+    private IEnumerable<Skill> LanguageSkills => Skills.List.Where(s => s.Type == SkillType.Language);
+    private IEnumerable<Skill> LibSkills => Skills.List.Where(s => s.Type == SkillType.Lib);
+    private IEnumerable<Skill> FrameworkSkills => Skills.List.Where(s => s.Type == SkillType.Framework);
+    private IEnumerable<Skill> ToolSkills => Skills.List.Where(s => s.Type == SkillType.Tool);
+    private IEnumerable<Skill> StudySkills => Skills.List.Where(s => s.Type == SkillType.Study);
+}
