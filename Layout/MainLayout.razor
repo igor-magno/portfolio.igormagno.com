@@ -13,18 +13,35 @@
 <MudLayout>
     <MudAppBar Fixed="false" Elevation="0">
         <MudSpacer />
+        <MudButton Variant="Variant.Outlined"
+                   Color="Color.Inherit"
+                   Href="/igor-magno-cv-padrao.pdf"
+                   StartIcon="@Icons.Material.Filled.Download"
+                   Size="Size.Small"    >
+            Baixar CV
+        </MudButton>
         <MudSwitch @bind-Value="_isDarkMode"
                    ThumbIcon="@(_isDarkMode == true ? Icons.Material.Filled.DarkMode : Icons.Material.Filled.LightMode)"
                    ThumbIconColor="@(_isDarkMode == true ? Color.Success : Color.Error)"
-                   Class="ma-4" T="bool"/>
+                   Class="ma-6" T="bool"/>
     </MudAppBar>
     <MudMainContent>
         @Body
     </MudMainContent>
+    <MudAppBar Fixed="false" Elevation="0" Bottom="true">
+        <MudSpacer />
+        <MudText Typo="Typo.caption"
+                 Align="Align.Center"
+                 Color="Color.Inherit">
+            © 2018 - @DateTime.Now.Year @title
+        </MudText>
+        <MudSpacer />
+    </MudAppBar>
 </MudLayout>
 
 @code {
     private bool _isDarkMode;
+    private string title = "Igor Magno";
 
     private MudTheme _theme = new MudTheme
     {
