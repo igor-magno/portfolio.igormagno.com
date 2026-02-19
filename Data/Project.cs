@@ -13,4 +13,5 @@ public class Project
     public bool IsCase { get; set; }
     public bool IsOwner { get; set; }
     public bool IsOpenCode { get; set; }
+    public string? Client { get; set; }
 }
