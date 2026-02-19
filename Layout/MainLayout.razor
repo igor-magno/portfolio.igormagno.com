@@ -2,40 +2,96 @@
 
 @* Required *@
 <MudThemeProvider @bind-IsDarkMode="@_isDarkMode" Theme="_theme"/>
-<MudPopoverProvider />
+<MudPopoverProvider/>
 
 @* Needed for dialogs *@
-<MudDialogProvider />
+<MudDialogProvider/>
 
 @* Needed for snackbars *@
-<MudSnackbarProvider />
+<MudSnackbarProvider/>
 
 <MudLayout>
-    <MudAppBar Fixed="false" Elevation="0">
-        <MudSpacer />
-        <MudButton Variant="Variant.Outlined"
-                   Color="Color.Inherit"
-                   Href="/igor-magno-cv-padrao.pdf"
-                   StartIcon="@Icons.Material.Filled.Download"
-                   Size="Size.Small"    >
-            Baixar CV
-        </MudButton>
+    <MudAppBar Elevation="0">
+        <!-- LOGO -->
+        <MudText Typo="Typo.h4"
+                 Style="font-family: Exile, system-ui; font-weight: 400"
+                 Color="Color.Primary">
+            IM
+        </MudText>
+        <MudSpacer/>
+        <!-- MENU DESKTOP -->
+        <MudHidden Breakpoint="Breakpoint.MdAndDown">
+            <MudStack Row="true" Spacing="5">
+                <MudButton Href="#hero"
+                           Variant="Variant.Text">
+                    Início
+                </MudButton>
+                <MudButton Href="#services"
+                           Variant="Variant.Text">
+                    Serviços
+                </MudButton>
+                <MudButton Href="#projects"
+                           Variant="Variant.Text">
+                    Projetos
+                </MudButton>
+                <MudButton Href="#experiences"
+                           Variant="Variant.Text">
+                    Experiência
+                </MudButton>
+                <MudButton Href="#skills"
+                           Variant="Variant.Text">
+                    Tecnologias
+                </MudButton>
+                <MudButton Href="#contato"
+                           Variant="Variant.Text">
+                    Contato
+                </MudButton>
+            </MudStack>
+        </MudHidden>
+        <!-- DARK MODE -->
         <MudSwitch @bind-Value="_isDarkMode"
-                   ThumbIcon="@(_isDarkMode == true ? Icons.Material.Filled.DarkMode : Icons.Material.Filled.LightMode)"
-                   ThumbIconColor="@(_isDarkMode == true ? Color.Success : Color.Error)"
-                   Class="ma-6" T="bool"/>
+                   ThumbIcon="@(_isDarkMode ? Icons.Material.Filled.DarkMode : Icons.Material.Filled.LightMode)"
+                   ThumbIconColor="@(_isDarkMode ? Color.Success : Color.Warning)"
+                   Class="mx-2"
+                   T="bool"/>
+        <!-- MENU MOBILE -->
+        <MudHidden Breakpoint="Breakpoint.LgAndUp">
+            <MudMenu Dense
+                     Variant="Variant.Text"
+                     Size="Size.Medium"
+                     Icon="@Icons.Material.Filled.Menu">
+                <MudMenuItem Href="#hero"
+                             Icon="@Icons.Material.Filled.Home"
+                             Label="Início"/>
+                <MudMenuItem Href="#services"
+                             Icon="@Icons.Material.Filled.DesignServices"
+                             Label="Serviços"/>
+                <MudMenuItem Href="#projects"
+                             Icon="@Icons.Material.Filled.Work"
+                             Label="Projetos"/>
+                <MudMenuItem Href="#experiences"
+                             Icon="@Icons.Material.Filled.Badge"
+                             Label="Experiência"/>
+                <MudMenuItem Href="#skills"
+                             Icon="@Icons.Material.Filled.Code"
+                             Label="Tecnologias"/>
+                <MudMenuItem Href="#contato"
+                             Icon="@Icons.Material.Filled.Email"
+                             Label="Contato"/>
+            </MudMenu>
+        </MudHidden>
     </MudAppBar>
     <MudMainContent>
         @Body
     </MudMainContent>
     <MudAppBar Fixed="false" Elevation="0" Bottom="true">
-        <MudSpacer />
+        <MudSpacer/>
         <MudText Typo="Typo.caption"
                  Align="Align.Center"
                  Color="Color.Inherit">
             © 2018 - @DateTime.Now.Year @title
         </MudText>
-        <MudSpacer />
+        <MudSpacer/>
     </MudAppBar>
 </MudLayout>
 
@@ -100,6 +156,6 @@
             DrawerWidthLeft = "260px",
             DrawerWidthRight = "300px"
         },
-        
     };
+
 }

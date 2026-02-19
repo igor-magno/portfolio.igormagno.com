@@ -77,10 +77,6 @@ html, body, .mud-typography {
     font-family: Inter, Roboto, Helvetica, Arial, sans-serif;
 }
 
-.mud-paper {
-    border-radius: 16px;
-}
-
 .mud-button {
     text-transform: none;
     font-weight: 500;
