@@ -7,7 +7,9 @@ public class Project
     public string Name { get; set; }
     public string Description { get; set; }
     public Skill[] Skills { get; set; }
-    public string? Link { get; set; }
+    public string? SiteLink { get; set; }
+    public string? PlayStoreLink { get; set; }
+    public string? AppStoreLink { get; set; }
     public string? CodeLink { get; set; }
     public string? LogoLink { get; set; }
     public bool IsCase { get; set; }
