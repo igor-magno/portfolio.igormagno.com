@@ -57,7 +57,7 @@
                         <MudItem xs="6">
                             <MudPaper Class="pa-6 text-center">
                                 <MudText Typo="Typo.h3" Color="Color.Primary"
-                                         Style="font-family: Exile, system-ui; font-weight: 400">
+                                         Style="font-weight: 400; font-style: italic">
                                     +@ProjectsDelivered
                                 </MudText>
                                 <MudText Typo="Typo.caption">
@@ -69,7 +69,7 @@
                         <MudItem xs="6">
                             <MudPaper Class="pa-6 text-center">
                                 <MudText Typo="Typo.h3" Color="Color.Primary"
-                                         Style="font-family: Exile, system-ui; font-weight: 400">
+                                         Style="font-weight: 400; font-style: italic">
                                     +@YearsOfExperience
                                 </MudText>
                                 <MudText Typo="Typo.caption">
@@ -81,7 +81,7 @@
                         <MudItem xs="6">
                             <MudPaper Class="pa-6 text-center">
                                 <MudText Typo="Typo.h3" Color="Color.Primary"
-                                         Style="font-family: Exile, system-ui; font-weight: 400">
+                                         Style="font-weight: 400; font-style: italic">
                                     +@CustomersServed
                                 </MudText>
                                 <MudText Typo="Typo.caption">
@@ -159,15 +159,48 @@
                                     <MudText Typo="Typo.body2">
                                         @project.Description
                                     </MudText>
-                                    @if (project.Link != null)
-                                    {
-                                        <MudButton Variant="Variant.Text"
-                                                   Color="Color.Primary"
-                                                   Href="@project.Link"
-                                                   Target="_blank">
-                                            Ver projeto →
-                                        </MudButton>
-                                    }
+                                    <MudStack Row="true" Spacing="1">
+                                        @if (project.SiteLink != null)
+                                        {
+                                            <MudButton Variant="Variant.Text"
+                                                       Color="Color.Primary"
+                                                       StartIcon="@Icons.Material.Filled.Language"
+                                                       Href="@project.SiteLink"
+                                                       Target="_blank">
+                                                Site
+                                            </MudButton>
+                                        }
+                                        @if (project.PlayStoreLink != null)
+                                        {
+                                            <MudButton Variant="Variant.Text"
+                                                       Color="Color.Primary"
+                                                       StartIcon="@Icons.Material.Filled.Android"
+                                                       Href="@project.PlayStoreLink"
+                                                       Target="_blank">
+                                                Android
+                                            </MudButton>
+                                        }
+                                        @if (project.AppStoreLink != null)
+                                        {
+                                            <MudButton Variant="Variant.Text"
+                                                       Color="Color.Primary"
+                                                       StartIcon="@Icons.Custom.Brands.Apple"
+                                                       Href="@project.AppStoreLink"
+                                                       Target="_blank">
+                                                iOS
+                                            </MudButton>
+                                        }
+                                        @if (project.CodeLink != null)
+                                        {
+                                            <MudButton Variant="Variant.Text"
+                                                       Color="Color.Primary"
+                                                       StartIcon="@Icons.Material.Filled.Code"
+                                                       Href="@project.CodeLink"
+                                                       Target="_blank">
+                                                Código
+                                            </MudButton>
+                                        }
+                                    </MudStack>
                                 </MudStack>
                             </MudPaper>
                         </MudItem>
