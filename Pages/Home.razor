@@ -298,11 +298,11 @@
     private IEnumerable<Skill> FrameworkAndLibSkills =>
         Skills.List.Where(s => s.Type == SkillType.Framework || s.Type == SkillType.Lib);
 
-    private int YearsOfExperience = DateTime.Now.Year - 2018;
-    private int ProjectsDelivered = Projects.List.Length;
+    private int YearsOfExperience = DateTime.Now.Year - 2018 - 1;
+    private int ProjectsDelivered = Projects.List.Length - 1;
 
     private int CustomersServed =
-        Projects.List.Where(s => s.Client != null).GroupBy(s => s.Client).Count();
+        Projects.List.Where(s => s.Client != null).GroupBy(s => s.Client).Count() - 1;
 
     private bool ShowAllProjects = false;
 
